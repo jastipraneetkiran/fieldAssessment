@@ -1,0 +1,37 @@
+<!-- Creating A from Group To Render Dynamic Fields From JSON -->
+<form [formGroup]="form">
+  <!-- For Loop against the formJson to render the fields -->
+  <div *ngFor="let field of formJson">
+    <!-- Header To be displayed -->
+    <ng-container *ngIf="field.type === 'header'; else fieldTemplate">
+      <strong><h1>{{ field.label }}</h1></strong>
+    </ng-container>
+    <!-- Fields To Be displayed -->
+    <ng-template #fieldTemplate>
+      <!-- Label Of The Field -->
+      <label>{{ field.label }}</label>
+      <!-- TEXT Type field -->
+      <div *ngIf="field.field_type === 'text'">
+        <input type="text" formControlName="{{ field.name }}" (change)="onChange($event,field)" [ngClass]="{'is-invalid': field.error}">
+      </div>
+      <!-- SELECT Field -->
+      <div *ngIf="field.field_type === 'select'">
+        <select formControlName="{{ field.name }}" (change)="onChange($event,field)" [ngClass]="{'is-invalid': field.error}">
+          <option *ngFor="let option of field.drop_down_value" [value]="option.code">
+            {{ option.meaning }}
+          </option>
+        </select>
+      </div>
+      <!-- Date Field -->
+      <div *ngIf="field.field_type === 'date'">
+        <input type="date" formControlName="{{ field.name }}" [ngClass]="{'is-invalid': field.error}" (change)="onChange($event,field)">
+      </div>
+      <!-- Number Field -->
+      <div *ngIf="field.field_type === 'number'">
+        <input type="number" formControlName="{{ field.name }}" [ngClass]="{'is-invalid': field.error}" (change)="onChange($event,field)">
+      </div>
+      <!-- Error context of field -->
+      <div *ngIf="field.error" class="text-danger">{{ field.error }}</div>
+    </ng-template>
+  </div>
+</form>
