@@ -1,11 +1,11 @@
 # Dynamic Form manipulation using JSON
 
-- Steps To Run Project
-  -
-  1. Install angular ```npm i @angular/cli```
-  2. Take Clone of the app
-  3. Run ```npm i```
-  4. Run ```npm start```
+>- Steps To Run Project
+ > -
+  >1. Install angular ```npm i @angular/cli```
+  >2. Take Clone of the app
+  >3. Run ```npm i```
+  >4. Run ```npm start```
 
 
 #
